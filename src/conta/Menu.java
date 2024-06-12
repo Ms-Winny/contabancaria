@@ -2,12 +2,31 @@ package conta;
 
 import java.util.*;
 import conta.util.Cores;
+import conta.model.Conta;
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
 
 public class Menu {
 
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		int opcao;
+		
+		//Teste da conta corrente
+		Conta cc1 = new ContaCorrente(1, 123, 1, "Ana", 1000.0f, 10000.0f);
+		cc1.visualizar();
+		cc1.sacar(1550.0f);
+		cc1.visualizar();
+		cc1.depositar(100.0f);
+		cc1.visualizar();
+		
+		//Teste da conta poupança
+		Conta cp1 = new ContaPoupanca(1, 123, 1, "José", 5000.0f, 21);
+		cp1.visualizar();
+		cp1.sacar(7000.0f);
+		cp1.visualizar();
+		cp1.depositar(500.0f);
+		cp1.visualizar();
 		
 		while (true) {
 			
@@ -54,6 +73,7 @@ public class Menu {
 				
 			case 3:
 				System.out.println(Cores.TEXT_WHITE+"Consultar dados da conta - por número\n\n");
+				//visualizar();
 				break;
 				
 			case 4:
