@@ -26,8 +26,7 @@ public class ContaCorrente extends Conta{
 		if (this.getSaldo() + this.getLimite() < valor) {
 			System.out.println(Cores.TEXT_RED_BOLD_BRIGHT+" Saldo insuficiente!"+Cores.TEXT_RESET);
 			return false;
-		}
-		
+		}	
 		this.setSaldo(this.getSaldo() - valor);
 		return true;
 	}
