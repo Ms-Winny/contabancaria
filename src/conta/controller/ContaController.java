@@ -30,7 +30,7 @@ public class ContaController implements ContaRepository{
 	@Override
 	public void cadastrar(Conta conta) {
 		listaContas.add(conta);
-		System.out.println(Cores.TEXT_GREEN_BOLD_BRIGHT+"A conta de número "+conta.getNumero()+" foi cadastrada com sucesso!"+Cores.TEXT_RESET);
+		System.out.println(Cores.TEXT_GREEN_BOLD_BRIGHT+"\nA conta de número "+conta.getNumero()+" foi cadastrada com sucesso!"+Cores.TEXT_RESET);
 	}
 
 	@Override

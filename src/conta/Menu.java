@@ -10,12 +10,14 @@ import conta.model.ContaPoupanca;
 public class Menu {
 
 	public static void main(String[] args) {
-		ContaController contas = new ContaController();
 		Scanner ler = new Scanner(System.in);
+		ContaController contas = new ContaController();
+		
 		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite, valor;
+		float saldo, limite, valor;	
 		
+		//Criação de contas de exemplo para facilitar os testes
 		ContaCorrente cC1 = new ContaCorrente(contas.gerarNumero(), 48, 1, "Weida Winy Rodrigues Viana", 1500f, 2500f);
 		contas.cadastrar(cC1);
 		
@@ -28,6 +30,7 @@ public class Menu {
 		ContaPoupanca cP2 = new ContaPoupanca(contas.gerarNumero(), 47, 2, "Eliane Soares", 15f, 14);
 		contas.cadastrar(cP2);
 		
+		//laço de repetição que vai manter o menu e as opções ativas
 		while (true) {
 			
 			System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+
@@ -49,53 +52,67 @@ public class Menu {
 			System.out.println("_________________________________________________________");
 			System.out.println("                                                         ");
 			System.out.println("   Entre com a opção desejada:                           ");
-			System.out.println("                                                         "+ Cores.TEXT_RESET);
+			System.out.println("_________________________________________________________"+ Cores.TEXT_RESET);
 			
+			//Captura e aviso do erro caso o usuário não digite um número inteiro
 			try {
 				opcao = ler.nextInt();
 			} catch (InputMismatchException e) {
-				System.out.println("\nDigite valores inteiros!");
+				System.out.println(Cores.TEXT_RED_BOLD+"\nDigite valores inteiros!"+Cores.TEXT_RESET);
 				ler.nextLine();
 				opcao = 0;
 			}
 			
-			
+			//Encerramento do sistema e créditos
 			if(opcao == 9) {
-				System.out.println(Cores.TEXT_WHITE_BOLD_BRIGHT+Cores.ANSI_BLACK_BACKGROUND+
-						           "                                                         ");
-				System.out.println("Banco do Brasiu com U - Seu Futuro começa aqui           ");
+				System.out.println(Cores.TEXT_WHITE_BOLD_BRIGHT
+						          +"_________________________________________________________");
+				System.out.println(Cores.ANSI_BLACK_BACKGROUND
+						          +"                                                         ");
+				System.out.println("     Banco do Brasiu com U - Seu Futuro começa aqui      ");
 				sobre();
 				ler.close();
-				System.exit(0);
+				System.exit(0); //Método que encerra o programa
 			}
 			
 			switch(opcao) {
 			case 1:
-				System.out.println(Cores.TEXT_WHITE+"Criar conta\n\n");
-				
-				System.out.println("Digite o número da agência: ");
+				System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+"\nCriar conta\n");
+				System.out.println("                                                         ");
+				System.out.println("Digite o número da agência: "+Cores.TEXT_RESET);
 				agencia = ler.nextInt();
-				System.out.println("Digite o nome do titular: ");
+				
+				System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+
+								   "                                                         ");
+				System.out.println("Digite o nome do titular: "+Cores.TEXT_RESET);
 				ler.skip("\\R?"); //Serve para ignorar o \r para que o programa aceite nomes compostos
 				titular = ler.nextLine();
 				
 				do {
-					System.out.println("Digite o tipo da conta (1 - CC | 2 - CP)");	
+					System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+
+							           "                                                         ");
+					System.out.println("Digite o tipo da conta (1 - CC | 2 - CP)"+Cores.TEXT_RESET);	
 					tipo = ler.nextInt();
 				} while(tipo < 1 && tipo > 2);
 				
-				System.out.println("Digite o saldo da conta (R$): ");
+				System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+
+								   "                                                         ");
+				System.out.println("Digite o saldo da conta (R$): "+Cores.TEXT_RESET);
 				saldo = ler.nextFloat();
 				
 				switch(tipo) {
 				case 1:
-					System.out.println("Digite o limite de crédito (R$): ");
+					System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+
+					                   "                                                         ");
+					System.out.println("Digite o limite de crédito (R$): "+Cores.TEXT_RESET);
 					limite = ler.nextFloat();
 					contas.cadastrar(new ContaCorrente(contas.gerarNumero(), agencia, tipo, titular, saldo, limite));
 					break;
 				
 				case 2:
-					System.out.println("Digite o dia do aniversário da conta: ");
+					System.out.println(Cores.TEXT_CYAN_BOLD_BRIGHT+
+							           "                                                         ");
+					System.out.println("Digite o dia do aniversário da conta: "+Cores.TEXT_RESET);
 					aniversario = ler.nextInt();
 					contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario));
 					break;
@@ -240,7 +257,7 @@ public class Menu {
 	
 	public static void keyPress() {
 		try {
-			System.out.println(Cores.TEXT_RESET+"\n\nPressione enter para continuar...");
+			System.out.println(Cores.TEXT_RESET+"\nPressione enter para continuar...");
 			System.in.read();
 		} catch (IOException e) {
 			System.out.println("Você pressionou uma tecla diferente de enter");
